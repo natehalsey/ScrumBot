@@ -23,4 +23,10 @@ In the future, perhaps an image will be posted when !tasklist is called, thus al
 
 ## Setup
 
-You'll need to set up Heroku and add the app redis to set up this bot. With trouble-shooting and persistence, it should work right out of the box once you get the environment set up. 
+Fork this repository and create a heroku account. Add the repo to heroku and add the redis to go addon.
+
+Set your heroku config variables for both your REDISTOGO_URL (by following the link on the resources page) variable as well as your BOT_TOKEN (from discord) variable.
+
+When you're done, deploy the bot on the deploy page!
+
+Should work right out of the box.
