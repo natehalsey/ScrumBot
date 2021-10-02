@@ -37,9 +37,6 @@ public class TableGenerator {
         hexCodes.addAll(jtask.getHexCodes());
         updateTable();
     }
-    public void dTableGenerator(){
-        jtask.closePool();
-    }
     private void initHeader(){
         headerTask = new Task("Task Name", "Status", "Assigned");
         tasks.add(headerTask);

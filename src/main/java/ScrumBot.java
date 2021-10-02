@@ -63,8 +63,6 @@ public class ScrumBot {
                 }
             }
         });
-        table.dTableGenerator();
-        api.disconnect();
     }
 
 }

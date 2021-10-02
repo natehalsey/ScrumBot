@@ -95,7 +95,4 @@ public class JTask {
          map.put("assigned",assigned);
          jedis.hmset(taskID,map);
      }
-     public void closePool(){
-         pool.close();
-     }
 }
