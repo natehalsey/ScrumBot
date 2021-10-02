@@ -37,6 +37,9 @@ public class TableGenerator {
         hexCodes.addAll(jtask.getHexCodes());
         updateTable();
     }
+    public void dTableGenerator(){
+        jtask.closePool();
+    }
     private void initHeader(){
         headerTask = new Task("Task Name", "Status", "Assigned");
         tasks.add(headerTask);
@@ -192,10 +195,5 @@ public class TableGenerator {
         Random rand = new Random();
         int myHex = rand.nextInt(maxValue+1);
         return String.format("%06x",myHex);
-    }
-
-    public static void main(String[] args) {
-        TableGenerator table = new TableGenerator();
-        System.out.println(table.getTable());
     }
 }

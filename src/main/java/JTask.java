@@ -17,6 +17,7 @@ import java.util.Set;
 
 public class JTask {
     private Jedis jedis;
+    private JedisPool pool;
     private ArrayList<String> hexCodes;
     private ArrayList<Task> tasks;
     public JTask(){
@@ -26,10 +27,10 @@ public class JTask {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        JedisPool pool = new JedisPool(new JedisPoolConfig(),
+        pool = new JedisPool(new JedisPoolConfig(),
                 redisURI.getHost(),
                 redisURI.getPort(),
-                Protocol.DEFAULT_TIMEOUT,
+                0,
                 redisURI.getUserInfo().split(":",2)[1]);
 
         jedis = pool.getResource();
@@ -46,14 +47,12 @@ public class JTask {
         hexCodes = new ArrayList<>();
         Set<String> keys = jedis.keys("*");
         for (String key : keys){
+
             Map<String,String> map = jedis.hgetAll(key);
             String taskID = map.get("taskID");
             String taskName = map.get("taskName");
             String status = map.get("status");
             String assigned = map.get("assigned");
-
-
-            System.out.println("taskID: "+taskID+" taskName: "+taskName+" status: "+status+" assigned: "+assigned);
 
             Task task = new Task(taskName,status,assigned);
             task.setTaskID(taskID);
@@ -95,5 +94,8 @@ public class JTask {
          Map<String,String> map = jedis.hgetAll(taskID);
          map.put("assigned",assigned);
          jedis.hmset(taskID,map);
+     }
+     public void closePool(){
+         pool.close();
      }
 }

@@ -16,7 +16,6 @@ public class ScrumBot {
             if (!msg.getContent().startsWith("`")) {
                 if (msg.getContent().contains("!task") && !msg.getContent().equals("!tasklist")) {
                     String[] message = msg.getContent().split("!task");
-                    System.out.println(message[1]);
                     table.addEntry(message[1]);
                     event.getChannel().sendMessage("Added new task: " + message[1]);
                 }
@@ -64,6 +63,8 @@ public class ScrumBot {
                 }
             }
         });
+        table.dTableGenerator();
+        api.disconnect();
     }
 
 }
