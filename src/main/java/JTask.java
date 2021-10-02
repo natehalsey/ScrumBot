@@ -30,10 +30,9 @@ public class JTask {
         pool = new JedisPool(new JedisPoolConfig(),
                 redisURI.getHost(),
                 redisURI.getPort(),
-                0,
+                Protocol.DEFAULT_TIMEOUT,
                 redisURI.getUserInfo().split(":",2)[1]);
 
-        jedis = pool.getResource();
         initLists();
     }
 
@@ -43,24 +42,26 @@ public class JTask {
      * called at the beginning of every session
     */
      private void initLists(){
-        tasks = new ArrayList<>();
-        hexCodes = new ArrayList<>();
-        Set<String> keys = jedis.keys("*");
-        for (String key : keys){
+         jedis = pool.getResource();
+         tasks = new ArrayList<>();
+         hexCodes = new ArrayList<>();
+         Set<String> keys = jedis.keys("*");
+         for (String key : keys){
 
-            Map<String,String> map = jedis.hgetAll(key);
-            String taskID = map.get("taskID");
-            String taskName = map.get("taskName");
-            String status = map.get("status");
-            String assigned = map.get("assigned");
+             Map<String,String> map = jedis.hgetAll(key);
+             String taskID = map.get("taskID");
+             String taskName = map.get("taskName");
+             String status = map.get("status");
+             String assigned = map.get("assigned");
 
-            Task task = new Task(taskName,status,assigned);
-            task.setTaskID(taskID);
-            String hexCode = taskID;
+             Task task = new Task(taskName,status,assigned);
+             task.setTaskID(taskID);
+             String hexCode = taskID;
 
-            hexCodes.add(hexCode);
-            tasks.add(task);
-        }
+             hexCodes.add(hexCode);
+             tasks.add(task);
+         }
+         jedis.close();
      }
      public ArrayList<Task> getTasks(){
          return tasks;
@@ -70,6 +71,7 @@ public class JTask {
      }
      // called everytime an entry is added to the arraylist of tasks in TableGenerator
      public void addEntryDB(String taskID, String taskName){
+         jedis = pool.getResource();
 
          Map<String,String> map = new HashMap<String, String>();
          map.put("taskID",taskID);
@@ -78,21 +80,28 @@ public class JTask {
          map.put("assigned"," ");
 
          jedis.hmset(taskID,map);
+         jedis.close();
      }
      // called everytime an entry is deleted from the arraylist of tasks in TableGenerator
      public void deleteEntryDB(String taskID){
+         jedis = pool.getResource();
          jedis.del(taskID);
+         jedis.close();
      }
      // called everytime an entry's status is updated in the arraylist of tasks in TableGenerator
      public void updateEntryStatusDB(String taskID,String status){
+         jedis = pool.getResource();
          Map<String,String> map = jedis.hgetAll(taskID);
          map.put("status",status);
          jedis.hmset(taskID,map);
+         jedis.close();
      }
      // called everytime and entry's assigned state is updated in the arraylist of tasks in TableGenerator
      public void updateEntryAssignedDB(String taskID, String assigned){
+         jedis = pool.getResource();
          Map<String,String> map = jedis.hgetAll(taskID);
          map.put("assigned",assigned);
          jedis.hmset(taskID,map);
+         jedis.close();
      }
 }
