@@ -3,7 +3,7 @@
 This bot tracks various tasks for you on a discord server! An automated scrum master, unforgiving, cold and calculated.
 
 
-![scrumMaster](../Testing/ScrumBot/scrum_master_in_action.png)
+![scrumMaster](scrum_master_in_action.png)
 
 This bot creates an auto-resizing markdown table given your commands, it will definitely be limited in its ability. Mobile users won't be able to decipher what it posts, and if given too much input, it will overflow no matter what.
 
@@ -20,6 +20,8 @@ In the future, perhaps an image will be posted when !tasklist is called, thus al
 !assign [taskID] [user] - assigns specific user to task with taskID
 
 !tasklist - prints out the product backlog
+
+!mdlist - prints out the product backlog in md format
 
 ## Setup
 
