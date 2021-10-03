@@ -2,15 +2,11 @@
  * This class handles table generation and manages the arraylist of tasks
  */
 
-import javax.imageio.ImageIO;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.Random;
 
@@ -67,7 +63,7 @@ public class TableGenerator {
 
         //since every line is equal we can set the width to be an arbitrary element in our tableLines array
         int width = fm.stringWidth(tableLines[0]);
-        int height = fm.getHeight();
+        int height = fm.getHeight()+1;
 
         g2d.dispose();
 

@@ -67,7 +67,7 @@ public class ScrumBot {
                     event.getChannel().sendMessage("```" +
                             "`!task [taskname]` - adds a new task\n" +
                             "`!tasklist - displays the tasklist as an uploaded image\n"+
-                            "`!tasklistmd` - displays the tasklist as a markdown table\n" +
+                            "`!mdlist` - displays the tasklist as a markdown table\n" +
                             "`!status [taskID] [status]` - update the status of a task\n" +
                             "`!assign [taskID] [name]` - assigns a person to a task (plain name only for now!)]\n" +
                             "`!remove [taskID]` - removes the task with taskID```");
