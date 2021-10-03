@@ -3,7 +3,7 @@
 This bot tracks various tasks for you on a discord server! An automated scrum master, unforgiving, cold and calculated.
 
 
-![scrumMaster](scrum_master_in_action.png)
+![scrumMaster](../Testing/ScrumBot/scrum_master_in_action.png)
 
 This bot creates an auto-resizing markdown table given your commands, it will definitely be limited in its ability. Mobile users won't be able to decipher what it posts, and if given too much input, it will overflow no matter what.
 
@@ -24,6 +24,24 @@ In the future, perhaps an image will be posted when !tasklist is called, thus al
 ## Setup
 
 Fork this repository and create a heroku account. Add the repo to heroku and add the redis to go addon.
+
+### Set your GRADLE_TASK to "build"
+
+heroku config:set GRADLE_TASK="build" -a your_app_name
+
+### Set your BOT_TOKEN to your bot token
+
+heroku config:set BOT_TOKEN=[bot token here]
+
+### Set your REDISTOGO_URL
+
+heroku config:set REDISTOGO_URL=[url goes here]
+
+### enable your worker
+
+heroku ps:scale worker=1 -a your_app_name
+
+
 
 Set your heroku config variables for both your REDISTOGO_URL (by following the link on the resources page) variable as well as your BOT_TOKEN (from discord) variable.
 

@@ -230,13 +230,4 @@ public class TableGenerator {
         return String.format("%06x",myHex);
     }
 
-    public static void main(String[] args) {
-        TableGenerator table = new TableGenerator();
-        try {
-            ImageIO.write(table.tableToImage(), "png", new File("table.png"));
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-
-    }
 }
