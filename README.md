@@ -5,9 +5,11 @@ This bot tracks various tasks for you on a discord server! An automated scrum ma
 
 ![scrumMaster](scrum_master_in_action.png)
 
-This bot creates an auto-resizing markdown table given your commands, it will definitely be limited in its ability. Mobile users won't be able to decipher what it posts, and if given too much input, it will overflow no matter what.
+This bot creates an auto-resizing markdown table given your commands, viewable either as an image or as a text markdown table!
 
-In the future, perhaps an image will be posted when !tasklist is called, thus allowing everyone to enjoy this overlord.
+If viewing as markdown, lines can overflow, and mobile users will be unable to view the markdown table reasonably. That is why I've also implemented a (flawed) image upload!
+
+Note: There may be some issues with viewing the image preview on light mode, and overall the image preview does not look very good.
 
 ## Bot Commands
 
