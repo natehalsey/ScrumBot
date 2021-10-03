@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de6a9799-3114-49eb-9680-5b7ec82c8f59" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/JTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ScrumBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ScrumBot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633278257235</updated>
-      <workItem from="1633278259435" duration="4991000" />
+      <workItem from="1633278259435" duration="5110000" />
     </task>
     <servers />
   </component>

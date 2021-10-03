@@ -29,7 +29,7 @@ public class ScrumBot {
                         System.out.println("Cannot post image");
                     }
                 }
-                if (msg.getContent().equals("!taskmd")) {
+                if (msg.getContent().equals("!mdlist")) {
                     event.getChannel().sendMessage(table.getTableMD());
                 }
                 if (msg.getContent().contains("!remove")) {
