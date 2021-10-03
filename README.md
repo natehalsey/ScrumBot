@@ -7,9 +7,9 @@ This bot tracks various tasks for you on a discord server! An automated scrum ma
 
 This bot creates an auto-resizing markdown table given your commands, viewable either as an image or as a text markdown table!
 
-If viewing as markdown, lines can overflow, and mobile users will be unable to view the markdown table reasonably. That is why I've also implemented a (flawed) image upload!
+If viewing as markdown, lines can overflow, and mobile users will be unable to view the markdown table reasonably. That is why I've also implemented an image upload!
 
-Note: There may be some issues with viewing the image preview on light mode, and overall the image preview does not look very good.
+![imageupload](image_upload_discovery.png)
 
 ## Bot Commands
 
@@ -21,7 +21,7 @@ Note: There may be some issues with viewing the image preview on light mode, and
 
 !assign [taskID] [user] - assigns specific user to task with taskID
 
-!tasklist - prints out the product backlog
+!tasklist - uploads an image of the product backlog
 
 !mdlist - prints out the product backlog in md format
 
