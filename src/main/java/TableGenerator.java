@@ -2,6 +2,15 @@
  * This class handles table generation and manages the arraylist of tasks
  */
 
+import javax.imageio.ImageIO;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.Random;
 
@@ -43,14 +52,42 @@ public class TableGenerator {
         hexCodes.add("FFFFFF");
         headerTask.setTaskID("Task ID");
     }
-    public String getTable(){
-        return table;
+    public String getTableMD(){
+        return "```"+table+"```";
+    }
+    public BufferedImage tableToImage(){
+        String[] tableLines = table.split("\n");
+
+        BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = img.createGraphics();
+        Font font = new Font("Monospaced", Font.PLAIN, 15);
+        g2d.setFont(font);
+
+        FontMetrics fm = g2d.getFontMetrics();
+
+        //since every line is equal we can set the width to be an arbitrary element in our tableLines array
+        int width = fm.stringWidth(tableLines[0]);
+        int height = fm.getHeight();
+
+        g2d.dispose();
+
+        img = new BufferedImage(width, height*tableLines.length, BufferedImage.TYPE_INT_ARGB);
+        g2d = img.createGraphics();
+        g2d.setFont(font);
+        fm = g2d.getFontMetrics();
+        g2d.setColor(Color.WHITE);
+
+        g2d.drawString(tableLines[0],0,fm.getHeight()+1);
+        for (int i = 1; i < tableLines.length; i++) {
+            g2d.drawString(tableLines[i], 0, (fm.getHeight()*(i+1)));
+        }
+        g2d.dispose();
+        return img;
     }
     public void updateTable(){
 
         // for now we reset the table to null, could get messy if we try to edit the string
         StringBuilder tableBuilder = new StringBuilder();
-        tableBuilder.append("```\n");
         //updates the formatting array with the largest values in every column
         getLargest();
         for (Task task : tasks) {
@@ -100,7 +137,6 @@ public class TableGenerator {
             }
         }
         table = tableBuilder.toString();
-        table+="```";
     }
     public void updateEntryStatus(String taskID, String status) throws TaskNotFoundException{
         int index = hexCodes.indexOf(taskID);
@@ -192,5 +228,15 @@ public class TableGenerator {
         Random rand = new Random();
         int myHex = rand.nextInt(maxValue+1);
         return String.format("%06x",myHex);
+    }
+
+    public static void main(String[] args) {
+        TableGenerator table = new TableGenerator();
+        try {
+            ImageIO.write(table.tableToImage(), "png", new File("table.png"));
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
     }
 }

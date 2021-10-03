@@ -1,5 +1,6 @@
 import org.javacord.api.*;
 import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 
 public class ScrumBot {
     // reference to message in scrum-board to refer back to
@@ -20,7 +21,16 @@ public class ScrumBot {
                     event.getChannel().sendMessage("Added new task: " + message[1]);
                 }
                 if (msg.getContent().equals("!tasklist")) {
-                    event.getChannel().sendMessage(table.getTable());
+                    try {
+                        EmbedBuilder embed = new EmbedBuilder()
+                                .setImage(table.tableToImage());
+                        event.getChannel().sendMessage(embed);
+                    } catch (Exception e){
+                        System.out.println("Cannot post image");
+                    }
+                }
+                if (msg.getContent().equals("!taskmd")) {
+                    event.getChannel().sendMessage(table.getTableMD());
                 }
                 if (msg.getContent().contains("!remove")) {
                     String[] message = msg.getContent().split(" ");
@@ -56,7 +66,8 @@ public class ScrumBot {
                 if (msg.getContent().contains("!scrumbot")) {
                     event.getChannel().sendMessage("```" +
                             "`!task [taskname]` - adds a new task\n" +
-                            "`!tasklist` - displays the tasklist\n" +
+                            "`!tasklist - displays the tasklist as an uploaded image\n"+
+                            "`!tasklistmd` - displays the tasklist as a markdown table\n" +
                             "`!status [taskID] [status]` - update the status of a task\n" +
                             "`!assign [taskID] [name]` - assigns a person to a task (plain name only for now!)]\n" +
                             "`!remove [taskID]` - removes the task with taskID```");

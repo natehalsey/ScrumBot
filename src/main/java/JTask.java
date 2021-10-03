@@ -23,7 +23,7 @@ public class JTask {
     public JTask(){
         URI redisURI = null;
         try {
-            redisURI = new URI(System.getenv("REDISTOGO_URL"));
+            redisURI = new URI("REDISTOGO_URL");
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
