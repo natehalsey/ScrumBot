@@ -1,6 +1,6 @@
 # Scrum Bot
 
-This bot tracks various tasks for you on a discord server! An automated scrum master, unforgiving, cold and calculated.
+This bot tracks various tasks for you on a discord server!
 
 
 ![scrumMaster](scrum_master_in_action.png)
